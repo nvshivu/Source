@@ -1,0 +1,223 @@
+
+An Applet to handle MOUSEEVENTS
+
+
+
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
+/*
+<applet code="MouseEvents" width=300 height=100>
+</applet>
+*/
+public class MouseEvents extends Applet
+implements MouseListener, MouseMotionListener {
+String msg = "";
+int mouseX = 0, mouseY = 0; // coordinates of mouse
+public void init() {
+addMouseListener(this);
+addMouseMotionListener(this);
+}
+// Handle mouse clicked.
+public void mouseClicked(MouseEvent me) {
+// save coordinates
+mouseX = 0;
+mouseY = 10;
+msg = "Mouse clicked.";
+repaint();
+}
+// Handle mouse entered.
+public void mouseEntered(MouseEvent me) {
+// save coordinates
+mouseX = 0;
+mouseY = 10;
+msg = "Mouse entered.";
+repaint();
+mouseX = 0;
+mouseY = 10;
+msg = "Mouse exited.";
+repaint();
+}
+// Handle button pressed.
+public void mousePressed(MouseEvent me) {
+// save coordinates
+mouseX = me.getX();
+mouseY = me.getY();
+msg = "Down";
+repaint();
+}
+// Handle button released.
+public void mouseReleased(MouseEvent me) {
+// save coordinates
+mouseX = me.getX();
+mouseY = me.getY();
+msg = "Up";
+repaint();
+}
+// Handle mouse dragged.
+public void mouseDragged(MouseEvent me) {
+// save coordinates
+mouseX = me.getX();
+mouseY = me.getY();
+msg = "*";
+showStatus("Dragging mouse at " + mouseX + ", " + mouseY);
+repaint();
+}
+// Handle mouse moved.
+public void mouseMoved(MouseEvent me) {
+// show status
+showStatus("Moving mouse at " + me.getX() + ", " + me.getY());
+}
+// Display msg in applet window at current X,Y location.
+public void paint(Graphics g) {
+g.drawString(msg, mouseX, mouseY);
+}
+}
+
+
+
+
+
+
+Design an applet which uses Card layout with 3 Buttons. When the user clicks on any button, the background
+layout color must change.
+
+
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
+//<applet code="CardLayoutDemo" width=450 height=500></applet>
+public class CardLayoutDemo extends Applet implements ActionListener {
+String msg;
+Button redButton,greenButton,blueButton;
+Panel mypanel;
+CardLayout cardl;
+Label myLabel;
+public void init() {
+myLabel=new Label("click the button to change background color");
+blueButton=new Button("BLUE");
+redButton=new Button("RED");
+greenButton=new Button("GREEN");
+cardl=new CardLayout();
+mypanel=new Panel();
+mypanel.setLayout(cardl);
+Panel mypanel1=new Panel();
+mypanel1.add(myLabel);
+mypanel1.add(redButton);
+mypanel1.add(blueButton);
+mypanel1.add(greenButton);
+mypanel.add(mypanel1,"Panel");
+add(mypanel);
+redButton.addActionListener(this);
+blueButton.addActionListener(this);
+greenButton.addActionListener(this);
+}
+public void actionPerformed(ActionEvent ae) {
+String str=ae.getActionCommand();
+if(str.equals("RED")) {
+showStatus("you pressed red. The background color changes to red");
+setBackground(Color.red);
+}
+if(str.equals("BLUE")) {
+showStatus("you pressed blue. The background color changes to blue");
+setBackground(Color.blue);
+}
+if(str.equals("GREEN")) {
+showStatus("you pressed green. The background color changes to green");
+setBackground(Color.green);
+}
+}
+}
+
+
+
+
+HTML Code - CardLayoutDemo.html
+<html>
+<applet code="CardLayoutDemo" width=450 height=500>
+</applet>
+</html>
+
+
+
+
+
+
+
+
+Servlets and Webpages
+Java Servlet Program to accept username, address and display them in a web page by passing parameters.
+
+
+
+
+HTML Code
+<html>
+<head>
+<title>Greeting...</title>
+</head>
+<body>
+<h1 align=center>GREETING A USER</h1>
+<hr/>
+<form method=get action="http://localhost:8080/examples/servlets/servlet/WebForm">
+<table>
+<tr>
+<td align="right"><b>NAME:</b></td>
+<td><input type=text name=uname /></td>
+</tr>
+<tr>
+<td><b>ADDRESS:</b></td>
+<td><input type=text name=address /></td>
+</tr>
+</table>
+<input type=submit value=SUBMIT />
+<input type=reset value=CLEAR />
+<hr/>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+Java Code:
+
+
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+public class WebForm extends HttpServlet{
+public void doGet(HttpServletRequest request,HttpServletResponse response)
+throws IOException,ServletException{
+String name, addr;
+response.setContentType("text/html");
+name=request.getParameter("uname");
+addr=request.getParameter("address");
+PrintWriter out=response.getWriter();
+out.println("<html><body>");
+out.println("<h1 align=center> Welcome " + name + "</h1><hr>Address:" + addr);
+out.close();
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+// Handle mouse exited.
+public void mouseExited(MouseEvent me) {
+// save coordinates
