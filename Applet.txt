@@ -76,9 +76,6 @@ g.drawString(msg, mouseX, mouseY);
 
 
 
-
-
-
 Design an applet which uses Card layout with 3 Buttons. When the user clicks on any button, the background
 layout color must change.
 
@@ -128,7 +125,6 @@ setBackground(Color.green);
 }
 }
 }
-
 
 
 
@@ -202,20 +198,6 @@ out.println("<h1 align=center> Welcome " + name + "</h1><hr>Address:" + addr);
 out.close();
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 // Handle mouse exited.
